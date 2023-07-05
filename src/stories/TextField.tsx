@@ -36,26 +36,3 @@ export const TextField = ({
     </div>
   );
 };
-
-/*
-<div>
-      <label
-        htmlFor="text-field"
-        className="text-xs text-gray-700 bg-white bottom-7 left-12 relative px-1"
-      >
-        {label}
-      </label>
-      <input
-        onChange={handleChange}
-        id="text-field"
-        type="text"
-        className="border border-gray-400 rounded-md px-3 py-4 text-gray-800 text-sm"
-        placeholder={placeholder}
-        value={value}
-        {...props}
-      ></input>
-      <p className="text-xs text-gray-500 relative left-12 top-1">
-        {supportingText}
-      </p>
-    </div>
-*/

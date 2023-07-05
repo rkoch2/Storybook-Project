@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface ICheckbox {
   /*
@@ -11,8 +11,8 @@ interface ICheckbox {
   text?: string;
 }
 
-// TODO: [Q for Eric] Clicking the checkbox is not updating the initial isChecked value -- can you update story values from the component?
-// Since we don't have a setIsChecked function, I'm not sure how to update isChecked
+// Clicking the checkbox is not updating the initial isChecked value;
+// Can you update storybook controls by only interacting with the component?
 export const Checkbox = ({
   isChecked = false,
   text = "",
@@ -22,11 +22,6 @@ export const Checkbox = ({
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setChecked(event.target.checked);
   }
-
-  // Update the value of isChecked to be the value of checked when checked changes
-  // useEffect(() => {
-  //   isChecked = checked;
-  // }, [checked]);
 
   return (
     <div className="py-2">
