@@ -1,49 +1,69 @@
-import React, { useMemo } from "react";
+import cx from "classnames";
 
-const getVariantClasses = (variant: string) => {
-  switch (variant) {
-    case "filled": {
-      return "text-white bg-purple-800 border-purple-800 border-2";
-    }
-    case "outlined": {
-      return "text-purple-800 bg-transparent border-slate-400 border-2";
-    }
-    case "text": {
-      return "text-purple-800 bg-transparent border-transparent border-2";
-    }
-    case "tonal": {
-      return "text-slate-800 bg-purple-200 border-transparent border-2";
-    }
-    case "elevated": {
-      return "text-purple-800 bg-slate-100 border-grey-200 border-2 shadow-md";
-    }
-    default: {
-      return "text-white bg-purple-800 border-purple-800 border-2";
-    }
-  }
+type ButtonProps = {
+  /**
+  What styles should be applied to the element?
+  */
+  variant?: "filled" | "outlined" | "text" | "tonal" | "elevated";
+
+  /**
+  What the button label should be.
+  */
+  label?: string;
+
+  /**
+  What custom classes should be applied to the element?
+  */
+  className?: string;
+
+  /**
+  When present, specifies that the button should be disabled.
+  */
+  disabled?: boolean;
+
+  /**
+  What the inner content of the button is.
+  */
+  children?: React.ReactNode;
+
+  /**
+  Optional click handler.
+  */
+  onClick?: () => void;
 };
 
-const BASE_BUTTON_CLASSES = "cursor-pointer rounded-full px-4 py-2";
+function setButtonStyles(variant: string) {
+  return cx(
+    // base styles
+    "cursor-pointer rounded-full px-4 py-2",
+    {
+      // handle variants
+      // filled
+      "text-white bg-purple-800 border-purple-800 border-2":
+        variant === "filled",
+      // outlined
+      "text-purple-800 bg-transparent border-slate-400 border-2":
+        variant === "outlined",
+      // text
+      "text-purple-800 bg-transparent border-transparent border-2":
+        variant === "text",
+      // tonal
+      "text-slate-800 bg-purple-200 border-transparent border-2":
+        variant === "tonal",
+      // elevated
+      "text-purple-800 bg-slate-100 border-grey-200 border-2 shadow-md":
+        variant === "elevated",
+    }
+  );
+}
 
 export const Button = ({
   variant = "filled",
   label = "Button",
-  // showIcon = false,
-  // icon = null,
   ...props
-}) => {
-  const computedClasses = useMemo(() => {
-    const styleClass = getVariantClasses(variant);
-
-    return [styleClass];
-  }, [variant]);
-
+}: ButtonProps) => {
   return (
-    <button
-      type="button"
-      className={`${BASE_BUTTON_CLASSES} ${computedClasses}`}
-      {...props}
-    >
+    <button type="button" className={`${setButtonStyles(variant)}`} {...props}>
       {label}
     </button>
   );

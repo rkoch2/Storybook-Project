@@ -14,12 +14,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Unchecked: Story = {
   args: {
+    elementId: "unchecked",
     isChecked: false,
   },
 };
 
 export const Checked: Story = {
   args: {
+    elementId: "checked",
     isChecked: true,
     text: "I am checked",
   },
